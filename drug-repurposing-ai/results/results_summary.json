@@ -1,0 +1,30 @@
+{
+  "Random Forest": {
+    "accuracy": 0.8978,
+    "auc_roc": 0.9238,
+    "f1_score": 0.8285,
+    "cv_auc_mean": 0.9699,
+    "cv_auc_std": 0.0142
+  },
+  "SVM": {
+    "accuracy": 0.9302,
+    "auc_roc": 0.9376,
+    "f1_score": 0.8852,
+    "cv_auc_mean": 0.9699,
+    "cv_auc_std": 0.0125
+  },
+  "Gradient Boosting": {
+    "accuracy": 0.8903,
+    "auc_roc": 0.9292,
+    "f1_score": 0.8268,
+    "cv_auc_mean": 0.9707,
+    "cv_auc_std": 0.0111
+  },
+  "Neural Network (MLP)": {
+    "accuracy": 0.9027,
+    "auc_roc": 0.9363,
+    "f1_score": 0.8471,
+    "cv_auc_mean": 0.9697,
+    "cv_auc_std": 0.0126
+  }
+}

@@ -1,0 +1,7 @@
+# Extra deps needed only for local training/retraining (src/train.py, src/generate_data.py)
+# Install with: pip install -r requirements.txt -r requirements-train.txt
+imbalanced-learn
+matplotlib
+seaborn
+shap
+plotly
