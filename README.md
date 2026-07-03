@@ -1,52 +1,48 @@
 # 💊 AI-Based Drug Repurposing Prediction System
 
-**Predicting new therapeutic uses for existing FDA-approved drugs, using machine learning.**
-
-> M.Tech Final Year Project — Computer Science & Engineering
-> Maulana Abul Kalam Azad University of Technology (MAKAUT), West Bengal
+Predicting new therapeutic uses for existing FDA-approved drugs using machine learning.
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 
 🔗 **Live Demo:** [Add your Streamlit Cloud URL here after deploying]
 
 ---
 
-## 📖 Overview
+## Overview
 
-Drug repurposing — finding new therapeutic uses for drugs that are already approved and on the market — is one of the fastest, cheapest ways to bring treatments to patients, since the safety profile of the drug is already known. This project builds a full machine learning pipeline that predicts whether a given **drug–disease pair** is a plausible repurposing candidate, based on molecular, pharmacokinetic, and pathway-level features.
+Drug repurposing is the idea of finding new uses for drugs that are already approved and already sitting on pharmacy shelves. Since the safety data already exists, it's a far faster and cheaper path to a treatment than starting from scratch with a brand-new molecule.
 
-The system trains and compares four classifiers, selects the best-performing model, and serves predictions through an interactive Streamlit web app — complete with single-pair prediction, batch analysis across diseases, and a model performance dashboard.
+This project turns that idea into a working ML pipeline. Given a drug and a disease, it estimates how likely that drug is to be a viable treatment for that disease, based on a set of molecular, pharmacokinetic, and biological pathway features. Four classifiers are trained and compared, the best one is picked using cross-validated AUC-ROC, and the whole thing is wrapped in a Streamlit app so it's actually usable: single-pair predictions, batch analysis across diseases, and a dashboard showing how each model performed.
 
-## ✨ Features
+## Features
 
-- 🔬 **Single Prediction** — pick a drug and disease, tune molecular features with sliders, and get a repurposing probability with a confidence rating
-- 🔁 **Batch Analysis** — rank all candidate diseases for a chosen drug by repurposing potential
-- 📊 **Model Performance Dashboard** — live view of accuracy, AUC-ROC, F1, and cross-validation scores for every model trained
-- ✅ **Validated pair recognition** — known, clinically-documented repurposing cases (e.g. Metformin → Breast Cancer) are flagged automatically
-- 🎨 Clean, custom-styled UI (not default Streamlit theming)
+- **Single Prediction** — pick a drug and a disease, tune the underlying molecular features, and get a repurposing probability with a confidence rating
+- **Batch Analysis** — rank every candidate disease for a chosen drug by repurposing potential
+- **Model Performance dashboard** — accuracy, AUC-ROC, F1, and cross-validation scores for every trained model, in one place
+- **Known-pair recognition** — clinically documented repurposing cases (e.g. Metformin for breast cancer) get flagged automatically when predicted
+- Custom-styled UI rather than the default Streamlit theme
 
-## 🧠 How It Works
+## How It Works
 
 ```
 Synthetic dataset generation
         ↓
 22 engineered features (molecular, pharmacokinetic, pathway, disease-level)
         ↓
-Train/test split + SMOTE (class balancing)
+Train/test split + SMOTE for class balancing
         ↓
-Train 4 models: Random Forest · SVM · Gradient Boosting · MLP
+Train 4 models: Random Forest, SVM, Gradient Boosting, MLP
         ↓
-5-fold cross-validation → pick best model by AUC-ROC
+5-fold cross-validation, best model picked by AUC-ROC
         ↓
-Serve via Streamlit (app/app.py)
+Served through Streamlit (app/app.py)
 ```
 
-**Feature set (22 total):** molecular weight, LogP, H-bond donors/acceptors, rotatable bonds, polar surface area, binding affinity, bioavailability, half-life, toxicity, solubility, drug class, five pathway-involvement scores (inflammation, metabolism, apoptosis, angiogenesis, immunity), genetic risk, disease severity, prevalence, age of onset, and comorbidity.
+The 22 features cover molecular weight, LogP, H-bond donors/acceptors, rotatable bonds, polar surface area, binding affinity, bioavailability, half-life, toxicity, solubility, drug class, five pathway-involvement scores (inflammation, metabolism, apoptosis, angiogenesis, immunity), genetic risk, disease severity, prevalence, age of onset, and comorbidity.
 
-## 📊 Model Performance
+## Model Performance
 
 | Model | Accuracy | AUC-ROC | F1 Score | CV AUC (mean ± std) |
 |---|---|---|---|---|
@@ -55,7 +51,7 @@ Serve via Streamlit (app/app.py)
 | Gradient Boosting | 0.890 | 0.929 | 0.827 | 0.971 ± 0.011 |
 | Random Forest | 0.898 | 0.924 | 0.829 | 0.970 ± 0.014 |
 
-**SVM (RBF kernel)** was selected as the best model, deployed as `models/best_model.pkl`. Full metrics are in [`results/results_summary.json`](results/results_summary.json).
+SVM with an RBF kernel came out on top and is what's shipped as `models/best_model.pkl`. Full metrics live in [`results/results_summary.json`](results/results_summary.json).
 
 <p align="center">
   <img src="results/roc_curve.png" width="45%" alt="ROC Curve" />
@@ -65,22 +61,22 @@ Serve via Streamlit (app/app.py)
   <img src="results/model_comparison.png" width="70%" alt="Model Comparison" />
 </p>
 
-## ✅ Validated Repurposing Pairs
+## Validated Repurposing Pairs
 
-These clinically-documented repurposing cases are embedded in the dataset as ground truth, and are flagged with a ✅ in the app when predicted:
+These are real, clinically documented repurposing cases baked into the dataset as ground truth. The app flags them with a ✅ whenever they show up in a prediction:
 
 | Drug | Disease | Evidence |
 |---|---|---|
-| Metformin | Breast Cancer | Actively investigated as an anti-cancer agent |
+| Metformin | Breast Cancer | Actively studied as an anti-cancer agent |
 | Metformin | Colorectal Cancer | Multiple trials show reduced cancer risk |
 | Aspirin | Colorectal Cancer | Recognized chemopreventive agent |
-| Sildenafil | Coronary Artery Disease | Originally developed for CAD (before Viagra) |
+| Sildenafil | Coronary Artery Disease | Originally developed for CAD, before Viagra |
 | Imatinib | Leukemia | Landmark repurposing case (Gleevec, CML) |
 | Rituximab | Rheumatoid Arthritis | Repurposed from lymphoma treatment |
 | Adalimumab | Psoriasis | Approved for both RA and psoriasis |
 | Methotrexate | Rheumatoid Arthritis | Originally a cancer drug, now first-line for RA |
 
-## 🗂 Project Structure
+## Project Structure
 
 ```
 drug-repurposing-ai/
@@ -108,16 +104,11 @@ drug-repurposing-ai/
 └── README.md
 ```
 
-## ⚙️ Tech Stack
+## Tech Stack
 
-- **Python 3.9+**
-- **scikit-learn** — Random Forest, SVM, Gradient Boosting, MLP
-- **imbalanced-learn (SMOTE)** — class balancing
-- **SHAP** — model explainability
-- **Streamlit** — web app / demo UI
-- **pandas, numpy, joblib**
+Python 3.9+, scikit-learn (Random Forest, SVM, Gradient Boosting, MLP), imbalanced-learn for SMOTE, SHAP for explainability, Streamlit for the app, plus pandas, numpy, and joblib doing the usual heavy lifting underneath.
 
-## 🚀 Setup & Run Locally
+## Setup & Run Locally
 
 ```bash
 # 1. Clone the repo
@@ -131,7 +122,7 @@ pip install -r requirements.txt
 streamlit run app/app.py
 ```
 
-To regenerate the dataset or retrain models from scratch:
+To regenerate the dataset or retrain the models from scratch:
 
 ```bash
 pip install -r requirements.txt -r requirements-train.txt
@@ -139,22 +130,21 @@ python src/generate_data.py
 python src/train.py
 ```
 
-## ⚠️ Limitations & Disclaimer
+## Limitations & Disclaimer
 
-This project uses a **synthetically generated dataset** built to reflect realistic feature distributions and known repurposing biology — it is a machine learning proof-of-concept for a final-year academic submission, **not** a validated clinical or pharmacological tool. Predictions should not be used for real drug development, prescribing, or medical decision-making.
+The dataset here is synthetically generated, built to mimic realistic feature distributions and known repurposing biology, not pulled from real clinical trials or lab data. This is a proof-of-concept, not a validated pharmacological tool, and its predictions shouldn't be used for actual drug development, prescribing, or medical decisions.
 
-## 🔮 Future Improvements
+## Future Improvements
 
-- Swap synthetic data for a real bioactivity source (e.g. DrugBank, ChEMBL)
-- Surface SHAP explanations directly in the app UI, per-prediction
-- Graph-based models (drug–target–disease network embeddings)
-- User-uploadable batch CSV predictions
+- Swap the synthetic data for a real bioactivity source, like DrugBank or ChEMBL
+- Surface SHAP explanations directly in the app, per prediction
+- Try graph-based models using drug–target–disease network embeddings
+- Let users upload a CSV for batch predictions instead of one drug at a time
 
-## 👤 Author
+## Author
 
-**Aditya Ray**
-M.Tech, Computer Science & Engineering — MAKAUT, West Bengal
+Aditya Ray
 
 ---
 
-<p align="center">Built with scikit-learn + Streamlit</p>
+<p align="center">Built with scikit-learn and Streamlit</p>
