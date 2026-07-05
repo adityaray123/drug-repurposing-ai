@@ -136,7 +136,11 @@ The dataset here is synthetically generated, built to mimic realistic feature di
 
 ## Future Improvements
 
-- I may swap the synthetic data for a real bioactivity source, like DrugBank or ChEMBL
+- I may swap the synthetic data for a real bioactivity source, like DrugBank or ChEMBL.
+- Will add option to add user's drugs option.
+- Will add an option for to download the output.
+- Improve the UI/Design.
+- Add bigger Datasset.
 
 ## Author
 
