@@ -1,4 +1,4 @@
-**AI-Based Drug Repurposing Prediction System**
+## **AI-Based Drug Repurposing Prediction System**
 
 Predicting new therapeutic uses for existing FDA-approved drugs using machine learning.
 
