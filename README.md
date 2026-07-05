@@ -46,7 +46,7 @@ The 22 features cover molecular weight, LogP, H-bond donors/acceptors, rotatable
 
 | Model | Accuracy | AUC-ROC | F1 Score | CV AUC (mean ± std) |
 |---|---|---|---|---|
-| **SVM** 🏆 | 0.930 | **0.938** | 0.885 | 0.970 ± 0.013 |
+| **SVM** | 0.930 | **0.938** | 0.885 | 0.970 ± 0.013 |
 | Neural Network (MLP) | 0.903 | 0.936 | 0.847 | 0.970 ± 0.013 |
 | Gradient Boosting | 0.890 | 0.929 | 0.827 | 0.971 ± 0.011 |
 | Random Forest | 0.898 | 0.924 | 0.829 | 0.970 ± 0.014 |
