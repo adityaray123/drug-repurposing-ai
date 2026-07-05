@@ -6,7 +6,7 @@ Predicting new therapeutic uses for existing FDA-approved drugs using machine le
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)
 
-🔗 **Live Demo:** [Add your Streamlit Cloud URL here after deploying]
+🔗 **Live Demo:** https://drug-repurposing-ai.streamlit.app/
 
 ---
 
