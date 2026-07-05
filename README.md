@@ -136,10 +136,7 @@ The dataset here is synthetically generated, built to mimic realistic feature di
 
 ## Future Improvements
 
-- Swap the synthetic data for a real bioactivity source, like DrugBank or ChEMBL
-- Surface SHAP explanations directly in the app, per prediction
-- Try graph-based models using drug–target–disease network embeddings
-- Let users upload a CSV for batch predictions instead of one drug at a time
+- I may swap the synthetic data for a real bioactivity source, like DrugBank or ChEMBL
 
 ## Author
 
